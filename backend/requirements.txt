@@ -1,0 +1,12 @@
+Django>=6.0,<7.0 
+djangorestframework>=3.15,<4.0
+# Turns django into Rest API
+
+django-cors-headers>=4.5,<5.0
+# Allows django API to accept requests coming from React
+
+psycopg2-binary>=2.9,<3.0
+# The python driver required for Django to talk to a PostgreSQL database
+
+dj-database-url>=2.2,<3.0
+# Utility that allows Django to parse a single database connection string URL directly into Django's database configuration dictionary
