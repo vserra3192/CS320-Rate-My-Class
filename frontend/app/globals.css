@@ -1,26 +1,39 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root { --background: #f7f7f2; --foreground: #18332b; }
+@theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --font-sans: var(--font-inter); }
+body { background: var(--background); color: var(--foreground); font-family: var(--font-inter), Arial, Helvetica, sans-serif; }
+a:focus-visible { outline: 2px solid #16734c; outline-offset: 4px; }
+[data-name="Class search and results"] { min-height: 1120px; }
+[data-name="Class detail — Student view"] { min-height: 1400px; }
+[data-name="Class detail — Professor view"] { min-height: 1428px; }
+[data-name="Class result"] { position: relative; }
+[data-name="Class result"] > a:last-child { position: absolute; right: 16px; }
+@media (max-width: 1300px) {
+ [data-name="Navigation"], [data-name="Search workspace"], [data-name="Class workspace"] { padding-left: 32px; padding-right: 32px; }
+ [data-name="Search workspace"] { overflow-x: auto; }
+ [data-name="Class comparison list"] { min-width: 1312px; }
+ [data-name="Detail columns"] { gap: 24px; }
+ [data-name="Detail columns"] > :last-child { width: 360px; }
+ [data-name="Attribute row"] > *, [data-name="Attribute inputs"] > * { width: 100%; min-width: 0; }
+ [data-name="Rating summary"] { flex-wrap: wrap; }
+ [data-name="Class snapshot"] { min-width: 220px; }
+ [data-name="Attribute heading"] { flex-wrap: wrap; gap: 8px; }
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 760px) {
+ [data-name="Navigation"] { height: auto; min-height: 88px; padding: 20px; gap: 20px; flex-wrap: wrap; }
+ [data-name="Search workspace"], [data-name="Class workspace"] { padding: 28px 20px; }
+ [data-name="Brand"] > p { font-size: 18px; }
+ [data-name="Search controls"] { min-width: 0; flex-wrap: wrap; }
+ [data-name="Search input"] { flex-basis: 100%; }
+ [data-name="Filter controls"] { overflow: visible; flex-wrap: wrap; }
+ [data-name="Class identity"] { flex-shrink: 1; }
+ [data-name="Class identity"] > h1 { font-size: 30px; white-space: normal; }
+ [data-name="Detail columns"] { flex-direction: column; }
+ [data-name="Detail columns"] > * { width: 100%; }
+ [data-name="Attribute row"] { flex-direction: column; }
+ [data-name="Class snapshot"] { flex-basis: 100%; min-width: 0; }
+ [data-name="Class snapshot"] > p { white-space: normal; }
+ [data-name="Class context"], [data-name="Selected context"], [data-name="Written review"], [data-name="Written comment"] { width: 100%; }
+ [data-name="Anonymous posting"] { overflow: visible; }
+ [data-name="Anonymous posting"] > p { white-space: normal; }
 }
