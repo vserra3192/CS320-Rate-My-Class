@@ -1,3 +1,4 @@
+import { FormLightbox } from "../../components/form-lightbox";
 import { RatingScale } from "../../components/rating-scale";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +34,73 @@ export default function ClassDetailProfessorView() {
               Introduction to Data Science
             </h1>
           </div>
+
+          <FormLightbox label="Add a comment">
+            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[22px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-[424px]" data-node-id="37:171" data-name="Professor comment area">
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="37:172" data-name="Form introduction">
+                <p className="font-bold leading-[normal] relative shrink-0 text-[#18332b] text-[24px] whitespace-nowrap" data-node-id="37:173">
+                  Professor comments
+                </p>
+                <p className="font-normal leading-[1.5] min-w-full relative shrink-0 text-[#69756d] text-[13px] w-[min-content]" data-node-id="37:174">
+                  Professors can post class-specific notes, clarifications, and updates here using a professor account. Students can read these comments, but only professors can add new comments.
+                </p>
+              </div>
+              <div className="[word-break:break-word] bg-[#eaf3ec] content-stretch flex flex-col font-normal gap-[10px] items-start not-italic overflow-clip p-[14px] relative rounded-[8px] shrink-0 text-[12px] w-full" data-node-id="37:175" data-name="Guest posting choices">
+                <p className="leading-[1.5] min-w-full relative shrink-0 text-[#174d38] w-[min-content]" data-node-id="37:176">
+                  You’re browsing as a guest. Sign in with a professor account to post a comment.
+                </p>
+                <div className="content-stretch flex gap-[16px] items-start leading-[normal] overflow-clip relative shrink-0 text-[#16734c] whitespace-nowrap" data-node-id="37:177" data-name="Account links">
+                  <p className="relative shrink-0" data-node-id="37:178">
+                    Sign in
+                  </p>
+                  <p className="relative shrink-0" data-node-id="37:179">
+                    Create professor account
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="37:180" data-name="Selected context">
+                <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:181">
+                  Class
+                </p>
+                <div className="border border-[#dde4dc] border-solid content-stretch flex items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="37:182" data-name="Context selector">
+                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:183">
+                    CS 210 · Introduction to Data Science
+                  </p>
+                  <div className="relative shrink-0 size-[16px]" data-node-id="37:184" data-name="chevron-down">
+                    <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgChevronDown1} unoptimized />
+                  </div>
+                </div>
+              </div>
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="37:186" data-name="Written comment">
+                <p className="font-semibold leading-[normal] relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="37:187">
+                  Comment
+                </p>
+                <div className="border border-[#dde4dc] border-solid content-stretch flex flex-col font-normal h-[116px] items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="37:188" data-name="Comment field">
+                  <p className="leading-[1.5] min-w-full relative shrink-0 text-[#18332b] text-[13px] w-[min-content]" data-node-id="37:189">
+                    This section is for faculty notes, clarifications, and context about the class. Students can read comments here, but only professors can post.
+                  </p>
+                  <p className="leading-[normal] relative shrink-0 text-[#69756d] text-[11px] whitespace-nowrap" data-node-id="37:190">
+                    0 / 1,000
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[10px] items-center overflow-clip relative shrink-0" data-node-id="37:191" data-name="Anonymous posting">
+                <div className="bg-[#16734c] content-stretch flex items-center justify-center overflow-clip relative rounded-[4px] shrink-0 size-[18px]" data-node-id="37:192" data-name="Selected checkbox">
+                  <div className="relative shrink-0 size-[14px]" data-node-id="37:193" data-name="check">
+                    <Image alt="" width={14} height={14} className="absolute block inset-0 max-w-none size-full" src={imgCheck} unoptimized />
+                  </div>
+                </div>
+                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:195">
+                  Post as professor (account required)
+                </p>
+              </div>
+              <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex h-[42px] items-center justify-center overflow-clip px-[18px] relative rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-full" data-node-id="37:196" data-name="Action">
+                <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="37:197">
+                  Sign in with professor account
+                </p>
+              </div>
+            </div>
+          </FormLightbox>
         </div>
         <div className="bg-[#f1f3ee] content-stretch flex gap-[4px] items-start overflow-clip p-[4px] relative rounded-[8px] shrink-0" data-node-id="37:30" data-name="Perspective switch">
           <Link href="/ratings" className="bg-[#f1f3ee] content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shrink-0" data-node-id="37:31" data-name="Student view option">
@@ -306,70 +374,7 @@ export default function ClassDetailProfessorView() {
               </p>
             </div>
           </div>
-          <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[22px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-[424px]" data-node-id="37:171" data-name="Professor comment area">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="37:172" data-name="Form introduction">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#18332b] text-[24px] whitespace-nowrap" data-node-id="37:173">
-                Professor comments
-              </p>
-              <p className="font-normal leading-[1.5] min-w-full relative shrink-0 text-[#69756d] text-[13px] w-[min-content]" data-node-id="37:174">
-                Professors can post class-specific notes, clarifications, and updates here using a professor account. Students can read these comments, but only professors can add new comments.
-              </p>
-            </div>
-            <div className="[word-break:break-word] bg-[#eaf3ec] content-stretch flex flex-col font-normal gap-[10px] items-start not-italic overflow-clip p-[14px] relative rounded-[8px] shrink-0 text-[12px] w-full" data-node-id="37:175" data-name="Guest posting choices">
-              <p className="leading-[1.5] min-w-full relative shrink-0 text-[#174d38] w-[min-content]" data-node-id="37:176">
-                You’re browsing as a guest. Sign in with a professor account to post a comment.
-              </p>
-              <div className="content-stretch flex gap-[16px] items-start leading-[normal] overflow-clip relative shrink-0 text-[#16734c] whitespace-nowrap" data-node-id="37:177" data-name="Account links">
-                <p className="relative shrink-0" data-node-id="37:178">
-                  Sign in
-                </p>
-                <p className="relative shrink-0" data-node-id="37:179">
-                  Create professor account
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="37:180" data-name="Selected context">
-              <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:181">
-                Class
-              </p>
-              <div className="border border-[#dde4dc] border-solid content-stretch flex items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="37:182" data-name="Context selector">
-                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:183">
-                  CS 210 · Introduction to Data Science
-                </p>
-                <div className="relative shrink-0 size-[16px]" data-node-id="37:184" data-name="chevron-down">
-                  <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgChevronDown1} unoptimized />
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="37:186" data-name="Written comment">
-              <p className="font-semibold leading-[normal] relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="37:187">
-                Comment
-              </p>
-              <div className="border border-[#dde4dc] border-solid content-stretch flex flex-col font-normal h-[116px] items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="37:188" data-name="Comment field">
-                <p className="leading-[1.5] min-w-full relative shrink-0 text-[#18332b] text-[13px] w-[min-content]" data-node-id="37:189">
-                  This section is for faculty notes, clarifications, and context about the class. Students can read comments here, but only professors can post.
-                </p>
-                <p className="leading-[normal] relative shrink-0 text-[#69756d] text-[11px] whitespace-nowrap" data-node-id="37:190">
-                  0 / 1,000
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[10px] items-center overflow-clip relative shrink-0" data-node-id="37:191" data-name="Anonymous posting">
-              <div className="bg-[#16734c] content-stretch flex items-center justify-center overflow-clip relative rounded-[4px] shrink-0 size-[18px]" data-node-id="37:192" data-name="Selected checkbox">
-                <div className="relative shrink-0 size-[14px]" data-node-id="37:193" data-name="check">
-                  <Image alt="" width={14} height={14} className="absolute block inset-0 max-w-none size-full" src={imgCheck} unoptimized />
-                </div>
-              </div>
-              <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:195">
-                Post as professor (account required)
-              </p>
-            </div>
-            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex h-[42px] items-center justify-center overflow-clip px-[18px] relative rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-full" data-node-id="37:196" data-name="Action">
-              <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="37:197">
-                Sign in with professor account
-              </p>
-            </div>
-          </div>
+
         </div>
       </div>
     </main>

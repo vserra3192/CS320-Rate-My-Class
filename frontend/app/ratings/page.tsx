@@ -1,3 +1,4 @@
+import { FormLightbox } from "../components/form-lightbox";
 import { RatingScale } from "../components/rating-scale";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +34,191 @@ export default function ClassDetailStudentView() {
               Introduction to Data Science
             </h1>
           </div>
+
+          <FormLightbox label="Rate this class">
+            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[22px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-[424px]" data-node-id="25:467" data-name="Class review form">
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="25:468" data-name="Form introduction">
+                <p className="font-bold leading-[normal] relative shrink-0 text-[#18332b] text-[24px] whitespace-nowrap" data-node-id="25:469">
+                  Rate this class
+                </p>
+                <p className="font-normal leading-[1.5] min-w-full relative shrink-0 text-[#69756d] text-[13px] w-[min-content]" data-node-id="25:470">
+                  Student accounts can rate and comment here. Professors can read; post in Professor view.
+                </p>
+              </div>
+              <div className="[word-break:break-word] bg-[#eaf3ec] content-stretch flex flex-col font-normal gap-[10px] items-start not-italic overflow-clip p-[14px] relative rounded-[8px] shrink-0 text-[12px] w-full" data-node-id="25:568" data-name="Guest posting choices">
+                <p className="leading-[1.5] min-w-full relative shrink-0 text-[#174d38] w-[min-content]" data-node-id="25:569">
+                  Guests can read only. Sign in with a student account to post in Student view.
+                </p>
+                <div className="content-stretch flex gap-[16px] items-start leading-[normal] overflow-clip relative shrink-0 text-[#16734c] whitespace-nowrap" data-node-id="25:570" data-name="Account links">
+                  <p className="relative shrink-0" data-node-id="25:571">
+                    Sign in
+                  </p>
+                  <p className="relative shrink-0" data-node-id="25:572">
+                    Create account
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="25:471" data-name="Selected context">
+                <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:472">
+                  Class
+                </p>
+                <div className="border border-[#dde4dc] border-solid content-stretch flex items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="25:473" data-name="Context selector">
+                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:474">
+                    CS 210 · Introduction to Data Science
+                  </p>
+                  <div className="relative shrink-0 size-[16px]" data-node-id="25:962" data-name="chevron-down">
+                    <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgChevronDown1} unoptimized />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start overflow-clip relative shrink-0 w-full" data-node-id="33:6" data-name="Overall rating">
+                <div className="[word-break:break-word] content-stretch flex items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 w-full whitespace-nowrap" data-node-id="33:7" data-name="Overall label">
+                  <p className="font-semibold relative shrink-0 text-[#18332b] text-[14px]" data-node-id="33:8">
+                    Overall class rating
+                  </p>
+                  <p className="font-bold relative shrink-0 text-[#16734c] text-[13px]" data-node-id="33:9">
+                    4 / 5
+                  </p>
+                </div>
+                <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="33:10" data-name="Score choices">
+                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:11" data-name="Score option">
+                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:12">
+                      1
+                    </p>
+                  </div>
+                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:13" data-name="Score option">
+                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:14">
+                      2
+                    </p>
+                  </div>
+                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:15" data-name="Score option">
+                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:16">
+                      3
+                    </p>
+                  </div>
+                  <div className="bg-[#16734c] border border-[#16734c] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:17" data-name="Score option">
+                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[15px] text-white whitespace-nowrap" data-node-id="33:18">
+                      4
+                    </p>
+                  </div>
+                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:19" data-name="Score option">
+                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:20">
+                      5
+                    </p>
+                  </div>
+                </div>
+                <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="33:21" data-name="Overall endpoints">
+                  <p className="relative shrink-0" data-node-id="33:22">
+                    1 · Poor
+                  </p>
+                  <p className="relative shrink-0" data-node-id="33:23">
+                    5 · Excellent
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[20px] items-start overflow-clip relative shrink-0 w-full" data-node-id="25:494" data-name="Attribute inputs">
+                <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:495" data-name="Rating input">
+                  <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:496" data-name="Rating label">
+                    <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:497">
+                      Group vs solo work
+                    </p>
+                    <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:498">
+                      4.0 / 5
+                    </p>
+                  </div>
+                  <RatingScale amount={75} input />
+                  <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:508" data-name="Scale endpoints">
+                    <p className="relative shrink-0" data-node-id="25:509">
+                      1 · Solo
+                    </p>
+                    <p className="relative shrink-0" data-node-id="25:510">
+                      5 · Group
+                    </p>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:511" data-name="Rating input">
+                  <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:512" data-name="Rating label">
+                    <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:513">
+                      Amount of presentations
+                    </p>
+                    <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:514">
+                      2.0 / 5
+                    </p>
+                  </div>
+                  <RatingScale amount={25} input />
+                  <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:524" data-name="Scale endpoints">
+                    <p className="relative shrink-0" data-node-id="25:525">
+                      1 · None
+                    </p>
+                    <p className="relative shrink-0" data-node-id="25:526">
+                      5 · A lot
+                    </p>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:527" data-name="Rating input">
+                  <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:528" data-name="Rating label">
+                    <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:529">
+                      Workload in class
+                    </p>
+                    <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:530">
+                      3.0 / 5
+                    </p>
+                  </div>
+                  <RatingScale amount={50} input />
+                  <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:540" data-name="Scale endpoints">
+                    <p className="relative shrink-0" data-node-id="25:541">
+                      1 · Light
+                    </p>
+                    <p className="relative shrink-0" data-node-id="25:542">
+                      5 · Heavy
+                    </p>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:543" data-name="Rating input">
+                  <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:544" data-name="Rating label">
+                    <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:545">
+                      Workload out of class
+                    </p>
+                    <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:546">
+                      4.0 / 5
+                    </p>
+                  </div>
+                  <RatingScale amount={75} input />
+                  <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:556" data-name="Scale endpoints">
+                    <p className="relative shrink-0" data-node-id="25:557">
+                      1 · Light
+                    </p>
+                    <p className="relative shrink-0" data-node-id="25:558">
+                      5 · Heavy
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="25:559" data-name="Written review">
+                <p className="font-semibold leading-[normal] relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="25:560">
+                  What should other students know?
+                </p>
+                <div className="border border-[#dde4dc] border-solid content-stretch flex flex-col font-normal h-[116px] items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="25:561" data-name="Comment field">
+                  <p className="leading-[1.5] min-w-full relative shrink-0 text-[#18332b] text-[13px] w-[min-content]" data-node-id="25:562">
+                    The weekly labs make the concepts click. Plan ahead for the final group project and leave time for the problem sets.
+                  </p>
+                  <p className="leading-[normal] relative shrink-0 text-[#69756d] text-[11px] whitespace-nowrap" data-node-id="25:563">
+                    116 / 1,000
+                  </p>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[10px] items-center overflow-clip relative shrink-0" data-node-id="25:564" data-name="Anonymous posting">
+                <div className="bg-[#16734c] content-stretch flex items-center justify-center overflow-clip relative rounded-[4px] shrink-0 size-[18px]" data-node-id="25:565" data-name="Selected checkbox">
+                  <div className="relative shrink-0 size-[14px]" data-node-id="25:965" data-name="check">
+                    <Image alt="" width={14} height={14} className="absolute block inset-0 max-w-none size-full" src={imgCheck} unoptimized />
+                  </div>
+                </div>
+                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:567">
+                  Post anonymously (student account required)
+                </p>
+              </div>
+            </div>
+          </FormLightbox>
         </div>
         <div className="bg-[#f1f3ee] content-stretch flex gap-[4px] items-start overflow-clip p-[4px] relative rounded-[8px] shrink-0" data-node-id="25:324" data-name="Perspective switch">
           <Link href="/ratings" aria-current="page" className="bg-white content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0" data-node-id="25:325" data-name="Student view option">
@@ -289,188 +475,7 @@ export default function ClassDetailStudentView() {
               </p>
             </div>
           </div>
-          <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[22px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-[424px]" data-node-id="25:467" data-name="Class review form">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="25:468" data-name="Form introduction">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#18332b] text-[24px] whitespace-nowrap" data-node-id="25:469">
-                Rate this class
-              </p>
-              <p className="font-normal leading-[1.5] min-w-full relative shrink-0 text-[#69756d] text-[13px] w-[min-content]" data-node-id="25:470">
-                Student accounts can rate and comment here. Professors can read; post in Professor view.
-              </p>
-            </div>
-            <div className="[word-break:break-word] bg-[#eaf3ec] content-stretch flex flex-col font-normal gap-[10px] items-start not-italic overflow-clip p-[14px] relative rounded-[8px] shrink-0 text-[12px] w-full" data-node-id="25:568" data-name="Guest posting choices">
-              <p className="leading-[1.5] min-w-full relative shrink-0 text-[#174d38] w-[min-content]" data-node-id="25:569">
-                Guests can read only. Sign in with a student account to post in Student view.
-              </p>
-              <div className="content-stretch flex gap-[16px] items-start leading-[normal] overflow-clip relative shrink-0 text-[#16734c] whitespace-nowrap" data-node-id="25:570" data-name="Account links">
-                <p className="relative shrink-0" data-node-id="25:571">
-                  Sign in
-                </p>
-                <p className="relative shrink-0" data-node-id="25:572">
-                  Create account
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="25:471" data-name="Selected context">
-              <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:472">
-                Class
-              </p>
-              <div className="border border-[#dde4dc] border-solid content-stretch flex items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="25:473" data-name="Context selector">
-                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:474">
-                  CS 210 · Introduction to Data Science
-                </p>
-                <div className="relative shrink-0 size-[16px]" data-node-id="25:962" data-name="chevron-down">
-                  <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgChevronDown1} unoptimized />
-                </div>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[10px] items-start overflow-clip relative shrink-0 w-full" data-node-id="33:6" data-name="Overall rating">
-              <div className="[word-break:break-word] content-stretch flex items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 w-full whitespace-nowrap" data-node-id="33:7" data-name="Overall label">
-                <p className="font-semibold relative shrink-0 text-[#18332b] text-[14px]" data-node-id="33:8">
-                  Overall class rating
-                </p>
-                <p className="font-bold relative shrink-0 text-[#16734c] text-[13px]" data-node-id="33:9">
-                  4 / 5
-                </p>
-              </div>
-              <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="33:10" data-name="Score choices">
-                <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:11" data-name="Score option">
-                  <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:12">
-                    1
-                  </p>
-                </div>
-                <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:13" data-name="Score option">
-                  <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:14">
-                    2
-                  </p>
-                </div>
-                <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:15" data-name="Score option">
-                  <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:16">
-                    3
-                  </p>
-                </div>
-                <div className="bg-[#16734c] border border-[#16734c] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:17" data-name="Score option">
-                  <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[15px] text-white whitespace-nowrap" data-node-id="33:18">
-                    4
-                  </p>
-                </div>
-                <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:19" data-name="Score option">
-                  <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:20">
-                    5
-                  </p>
-                </div>
-              </div>
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="33:21" data-name="Overall endpoints">
-                <p className="relative shrink-0" data-node-id="33:22">
-                  1 · Poor
-                </p>
-                <p className="relative shrink-0" data-node-id="33:23">
-                  5 · Excellent
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[20px] items-start overflow-clip relative shrink-0 w-full" data-node-id="25:494" data-name="Attribute inputs">
-              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:495" data-name="Rating input">
-                <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:496" data-name="Rating label">
-                  <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:497">
-                    Group vs solo work
-                  </p>
-                  <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:498">
-                    4.0 / 5
-                  </p>
-                </div>
-                <RatingScale amount={75} input />
-                <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:508" data-name="Scale endpoints">
-                  <p className="relative shrink-0" data-node-id="25:509">
-                    1 · Solo
-                  </p>
-                  <p className="relative shrink-0" data-node-id="25:510">
-                    5 · Group
-                  </p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:511" data-name="Rating input">
-                <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:512" data-name="Rating label">
-                  <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:513">
-                    Amount of presentations
-                  </p>
-                  <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:514">
-                    2.0 / 5
-                  </p>
-                </div>
-                <RatingScale amount={25} input />
-                <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:524" data-name="Scale endpoints">
-                  <p className="relative shrink-0" data-node-id="25:525">
-                    1 · None
-                  </p>
-                  <p className="relative shrink-0" data-node-id="25:526">
-                    5 · A lot
-                  </p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:527" data-name="Rating input">
-                <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:528" data-name="Rating label">
-                  <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:529">
-                    Workload in class
-                  </p>
-                  <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:530">
-                    3.0 / 5
-                  </p>
-                </div>
-                <RatingScale amount={50} input />
-                <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:540" data-name="Scale endpoints">
-                  <p className="relative shrink-0" data-node-id="25:541">
-                    1 · Light
-                  </p>
-                  <p className="relative shrink-0" data-node-id="25:542">
-                    5 · Heavy
-                  </p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[376px]" data-node-id="25:543" data-name="Rating input">
-                <div className="[word-break:break-word] content-stretch flex items-center justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[13px] w-full whitespace-nowrap" data-node-id="25:544" data-name="Rating label">
-                  <p className="font-medium relative shrink-0 text-[#18332b]" data-node-id="25:545">
-                    Workload out of class
-                  </p>
-                  <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:546">
-                    4.0 / 5
-                  </p>
-                </div>
-                <RatingScale amount={75} input />
-                <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:556" data-name="Scale endpoints">
-                  <p className="relative shrink-0" data-node-id="25:557">
-                    1 · Light
-                  </p>
-                  <p className="relative shrink-0" data-node-id="25:558">
-                    5 · Heavy
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-full" data-node-id="25:559" data-name="Written review">
-              <p className="font-semibold leading-[normal] relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="25:560">
-                What should other students know?
-              </p>
-              <div className="border border-[#dde4dc] border-solid content-stretch flex flex-col font-normal h-[116px] items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="25:561" data-name="Comment field">
-                <p className="leading-[1.5] min-w-full relative shrink-0 text-[#18332b] text-[13px] w-[min-content]" data-node-id="25:562">
-                  The weekly labs make the concepts click. Plan ahead for the final group project and leave time for the problem sets.
-                </p>
-                <p className="leading-[normal] relative shrink-0 text-[#69756d] text-[11px] whitespace-nowrap" data-node-id="25:563">
-                  116 / 1,000
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[10px] items-center overflow-clip relative shrink-0" data-node-id="25:564" data-name="Anonymous posting">
-              <div className="bg-[#16734c] content-stretch flex items-center justify-center overflow-clip relative rounded-[4px] shrink-0 size-[18px]" data-node-id="25:565" data-name="Selected checkbox">
-                <div className="relative shrink-0 size-[14px]" data-node-id="25:965" data-name="check">
-                  <Image alt="" width={14} height={14} className="absolute block inset-0 max-w-none size-full" src={imgCheck} unoptimized />
-                </div>
-              </div>
-              <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="25:567">
-                Post anonymously (student account required)
-              </p>
-            </div>
-          </div>
+
         </div>
       </div>
     </main>
