@@ -1,3 +1,6 @@
+"use client";
+
+import {useState} from "react";
 import { FormLightbox } from "../components/form-lightbox";
 import { RatingScale } from "../components/rating-scale";
 import Image from "next/image";
@@ -13,6 +16,7 @@ const imgChevronDown1 = `${assetPathPrefix}/d2943.svg`;
 const imgCheck = `${assetPathPrefix}/5a3f7.svg`;
 
 export default function ClassDetailStudentView() {
+  const [overallRating, setOverallRating] = useState(4);
   return (
     <main className="bg-[#f7f7f2] content-stretch flex flex-col items-start relative size-full" data-node-id="25:293" data-name="Class detail — Student view">
       <Header />
@@ -77,35 +81,25 @@ export default function ClassDetailStudentView() {
                     Overall class rating
                   </p>
                   <p className="font-bold relative shrink-0 text-[#16734c] text-[13px]" data-node-id="33:9">
-                    4 / 5
+                    {overallRating} / 5
                   </p>
                 </div>
                 <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="33:10" data-name="Score choices">
-                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:11" data-name="Score option">
-                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:12">
-                      1
-                    </p>
-                  </div>
-                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:13" data-name="Score option">
-                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:14">
-                      2
-                    </p>
-                  </div>
-                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:15" data-name="Score option">
-                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:16">
-                      3
-                    </p>
-                  </div>
-                  <div className="bg-[#16734c] border border-[#16734c] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:17" data-name="Score option">
-                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[15px] text-white whitespace-nowrap" data-node-id="33:18">
-                      4
-                    </p>
-                  </div>
-                  <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-[1_0_0] h-[40px] items-center justify-center min-w-px overflow-clip relative rounded-[6px]" data-node-id="33:19" data-name="Score option">
-                    <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[15px] whitespace-nowrap" data-node-id="33:20">
-                      5
-                    </p>
-                  </div>
+                  {[1, 2, 3, 4, 5].map((rating) => (
+                    <button
+                  key = {rating}
+                  type = "button"
+                  aria-pressed= {overallRating === rating}
+                  onClick = {() => setOverallRating(rating)}
+                  className={`h-[40px] flex-1 rounded-[6px] border text-[15px] font-semibold ${
+                    overallRating === rating
+                      ?  "border-[#16734c] bg-[#16734c] text-white"
+                      : "border-[#dde4dc] bg-white text-[#18332b]"
+                    }`}
+                  >
+                    {rating}
+                  </button>
+                  ))}
                 </div>
                 <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="33:21" data-name="Overall endpoints">
                   <p className="relative shrink-0" data-node-id="33:22">
@@ -123,7 +117,7 @@ export default function ClassDetailStudentView() {
                       Group vs solo work
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:498">
-                      4.0 / 5
+                      4 / 5
                     </p>
                   </div>
                   <RatingScale amount={75} input />
