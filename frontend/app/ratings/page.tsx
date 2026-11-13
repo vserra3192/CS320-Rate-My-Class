@@ -16,7 +16,12 @@ const imgChevronDown1 = `${assetPathPrefix}/d2943.svg`;
 const imgCheck = `${assetPathPrefix}/5a3f7.svg`;
 
 export default function ClassDetailStudentView() {
-  const [overallRating, setOverallRating] = useState(4);
+  const [overallRating, setOverallRating] = useState(0);
+  const [groupWork, setGroupWork] = useState(3);
+  const [presentationAmount, setPresentationAmount] = useState(3);
+  const [classWorkload, setClassWorkload] = useState(3);
+  const [outClassWorkload, setOutClassWorkload] = useState(3);
+
   return (
     <main className="bg-[#f7f7f2] content-stretch flex flex-col items-start relative size-full" data-node-id="25:293" data-name="Class detail — Student view">
       <Header />
@@ -117,10 +122,35 @@ export default function ClassDetailStudentView() {
                       Group vs solo work
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:498">
-                      4 / 5
+                      {groupWork.toFixed(1)} / 5
                     </p>
                   </div>
-                  <RatingScale amount={75} input />
+                  <div className="w-full">
+                    <input
+                      type="range"
+                      aria-label="Group vs solo work"
+                      min={1}
+                      max={5}
+                      step={1}
+                      value={groupWork}
+                      onChange={(event) => setGroupWork(event.currentTarget.valueAsNumber)}
+                      className="review-slider block w-full"
+                    />
+
+                    <div
+                      className="pointer-events-none absolute inset-x-[8px] top-1/2"
+                      aria-hidden="true"
+                    >
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <span
+                          key={number}
+                          className="absolute top-0 h-[6px] w-px -translate-x-1/2 -translate-y-1/2 bg-[#69756d]"
+                          style={{ left: `${((number - 1) / 4) * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:508" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="25:509">
                       1 · Solo
@@ -136,10 +166,35 @@ export default function ClassDetailStudentView() {
                       Amount of presentations
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:514">
-                      2.0 / 5
+                      {presentationAmount.toFixed(1)} / 5
                     </p>
                   </div>
-                  <RatingScale amount={25} input />
+                  <div className="w-full">
+                    <input
+                      type="range"
+                      aria-label="Amount of Presentations"
+                      min={1}
+                      max={5}
+                      step={1}
+                      value={presentationAmount}
+                      onChange={(event) => setPresentationAmount(event.currentTarget.valueAsNumber)}
+                      className="review-slider block w-full"
+                    />
+
+                    <div
+                      className="pointer-events-none absolute inset-x-[8px] top-1/2"
+                      aria-hidden="true"
+                    >
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <span
+                          key={number}
+                          className="absolute top-0 h-[6px] w-px -translate-x-1/2 -translate-y-1/2 bg-[#69756d]"
+                          style={{ left: `${((number - 1) / 4) * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:524" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="25:525">
                       1 · None
@@ -155,10 +210,35 @@ export default function ClassDetailStudentView() {
                       Workload in class
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:530">
-                      3.0 / 5
+                      {classWorkload.toFixed(1)} / 5
                     </p>
                   </div>
-                  <RatingScale amount={50} input />
+                  <div className="w-full">
+                    <input
+                      type="range"
+                      aria-label="Workload in class"
+                      min={1}
+                      max={5}
+                      step={1}
+                      value={classWorkload}
+                      onChange={(event) => setClassWorkload(event.currentTarget.valueAsNumber)}
+                      className="review-slider block w-full"
+                    />
+
+                    <div
+                      className="pointer-events-none absolute inset-x-[8px] top-1/2"
+                      aria-hidden="true"
+                    >
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <span
+                          key={number}
+                          className="absolute top-0 h-[6px] w-px -translate-x-1/2 -translate-y-1/2 bg-[#69756d]"
+                          style={{ left: `${((number - 1) / 4) * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:540" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="25:541">
                       1 · Light
@@ -174,10 +254,35 @@ export default function ClassDetailStudentView() {
                       Workload out of class
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="25:546">
-                      4.0 / 5
+                      {outClassWorkload.toFixed(1)} / 5
                     </p>
                   </div>
-                  <RatingScale amount={75} input />
+                  <div className="w-full">
+                    <input
+                      type="range"
+                      aria-label="Workload out of class"
+                      min={1}
+                      max={5}
+                      step={1}
+                      value={outClassWorkload}
+                      onChange={(event) => setOutClassWorkload(event.currentTarget.valueAsNumber)}
+                      className="review-slider block w-full"
+                    />
+
+                    <div
+                      className="pointer-events-none absolute inset-x-[8px] top-1/2"
+                      aria-hidden="true"
+                    >
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <span
+                          key={number}
+                          className="absolute top-0 h-[6px] w-px -translate-x-1/2 -translate-y-1/2 bg-[#69756d]"
+                          style={{ left: `${((number - 1) / 4) * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:556" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="25:557">
                       1 · Light
