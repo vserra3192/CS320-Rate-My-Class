@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import { RatingScale } from "./components/rating-scale";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +12,12 @@ const imgSlidersHorizontal = `${assetPathPrefix}/d8b84.svg`;
 const imgChevronDown = `${assetPathPrefix}/eb9cb.svg`;
 const imgArrowUpRight = `${assetPathPrefix}/4a824.svg`;
 
+
 export default function ClassSearchAndResults() {
+  const [search, setSearch] = useState("");
+  function handleSearch() {
+    // call endpoint here
+  }
   return (
     <main className="bg-[#f7f7f2] content-stretch flex flex-col items-start relative size-full" data-node-id="25:3" data-name="Class search and results">
       <Header />
@@ -20,18 +27,39 @@ export default function ClassSearchAndResults() {
             <div className="relative shrink-0 size-[18px]" data-node-id="25:893" data-name="search">
               <Image alt="" width={18} height={18} className="absolute block inset-0 max-w-none size-full" src={imgSearch} unoptimized />
             </div>
-            <p className="[word-break:break-word] flex-[1_0_0] font-normal leading-[normal] min-w-px not-italic relative text-[#18332b] text-[15px]" data-node-id="25:35">
-              Computer science
-            </p>
+              <input
+                type="text"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Search classes"
+                aria-label="Search classes"
+                className="min-w-0 flex-1 border-none bg-transparent text-[15px] text-[#18332b] outline-none placeholder:text-[#69756d]"
+              />
             <div className="relative shrink-0 size-[16px]" data-node-id="25:896" data-name="x">
-              <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgX} unoptimized />
+              <button
+                type="button"
+                aria-label="Clear search"
+                onClick={() => setSearch("")}
+                className="relative shrink-0 size-[16px] cursor-pointer"
+              >
+                <Image
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="absolute block inset-0 max-w-none size-full"
+                  src={imgX}
+                  unoptimized
+                />
+              </button>
             </div>
           </div>
-          <div className="bg-[#16734c] border border-[#16734c] border-solid content-stretch flex h-[42px] items-center justify-center overflow-clip px-[18px] relative rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0" data-node-id="25:37" data-name="Action">
-            <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="25:38">
-              Search classes
-            </p>
-          </div>
+            <button
+            onClick={() => handleSearch()}
+            type="button"
+            className="bg-[#16734c] border border-[#16734c] flex h-[42px] items-center justify-center px-[18px] rounded-[8px] shrink-0 font-semibold text-[14px] text-white cursor-pointer"
+            >
+              Search Classes
+            </button>
         </div>
         <div className="content-stretch flex gap-[12px] items-center overflow-clip relative shrink-0 w-full" data-node-id="25:39" data-name="Filter controls">
           <div className="relative shrink-0 size-[18px]" data-node-id="25:899" data-name="sliders-horizontal">
