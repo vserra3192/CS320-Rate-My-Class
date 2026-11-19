@@ -102,4 +102,4 @@ Backend code is located in `backend/`.
 ## Testing
 
 - **Frontend**: The framework used for testing the frontend is `Playwright`.
-- **Backend**: Django's built-int test framework.
+- **Backend**: Django's built-in test framework.
