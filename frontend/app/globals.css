@@ -50,3 +50,16 @@ body:has(.form-lightbox[open]) { overflow: hidden; }
  [data-name="Anonymous posting"] { overflow: visible; }
  [data-name="Anonymous posting"] > p { white-space: normal; }
 }
+.review-slider {
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: #a8d5b5;
+}
+.review-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #16734c;
+}
