@@ -11,7 +11,7 @@
 
 Tool and Model(s) Used: Codex (GPT-6.1 Sol)
 
-Tokens Used & Dollar Equivalent: 119K tokens used
+Tokens Used & Dollar Equivalent: 119K tokens used, ~$0.35
 
 ## Chat Log
 

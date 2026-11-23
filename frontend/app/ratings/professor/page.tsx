@@ -1,3 +1,6 @@
+"use client";
+
+import { SelectedCourse, type CoursePageData } from "../../components/selected-course";
 import { FormLightbox } from "../../components/form-lightbox";
 import { RatingScale } from "../../components/rating-scale";
 import Image from "next/image";
@@ -8,11 +11,23 @@ const assetPathPrefix = "/figma";
 const imgArrowLeft = `${assetPathPrefix}/9361d.svg`;
 const imgChevronDown = `${assetPathPrefix}/9bfbe.svg`;
 const imgUserRound = `${assetPathPrefix}/ef811.svg`;
-const imgThumbsUp = `${assetPathPrefix}/2bd10.svg`;
 const imgChevronDown1 = `${assetPathPrefix}/6fe4c.svg`;
 const imgCheck = `${assetPathPrefix}/b3d9c.svg`;
 
 export default function ClassDetailProfessorView() {
+  return (
+    <SelectedCourse>
+      {(data) => <RatingsContent {...data} />}
+    </SelectedCourse>
+  );
+}
+
+function RatingsContent({ course, reviews }: CoursePageData) {
+  const ratings = course.average_ratings;
+  const studentHref = `/ratings?courseId=${course.id}`;
+  const professorHref = `/ratings/professor?courseId=${course.id}`;
+  const visibleReviews = reviews.filter((review) => review.author_role === "professor");
+
   return (
     <main className="bg-[#f7f7f2] content-stretch flex flex-col items-start relative size-full" data-node-id="25:584" data-name="Class detail — Professor view">
       <Header professor />
@@ -25,13 +40,13 @@ export default function ClassDetailProfessorView() {
             All classes
           </Link>
           <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="37:22">
-            / Computer Science / CS 210
+            / {course.code ?? course.title}
           </p>
         </div>
         <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-node-id="37:23" data-name="Class header">
           <div className="content-stretch flex flex-col items-start overflow-clip relative shrink-0" data-node-id="37:24" data-name="Class identity">
             <h1 className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[40px] whitespace-nowrap" data-node-id="37:26">
-              Introduction to Data Science
+              {course.title}
             </h1>
           </div>
 
@@ -64,7 +79,7 @@ export default function ClassDetailProfessorView() {
                 </p>
                 <div className="border border-[#dde4dc] border-solid content-stretch flex items-start justify-between overflow-clip p-[12px] relative rounded-[8px] shrink-0 w-full" data-node-id="37:182" data-name="Context selector">
                   <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[13px] whitespace-nowrap" data-node-id="37:183">
-                    CS 210 · Introduction to Data Science
+                    {[course.code, course.title].filter(Boolean).join(" · ")}
                   </p>
                   <div className="relative shrink-0 size-[16px]" data-node-id="37:184" data-name="chevron-down">
                     <Image alt="" width={16} height={16} className="absolute block inset-0 max-w-none size-full" src={imgChevronDown1} unoptimized />
@@ -103,12 +118,12 @@ export default function ClassDetailProfessorView() {
           </FormLightbox>
         </div>
         <div className="bg-[#f1f3ee] content-stretch flex gap-[4px] items-start overflow-clip p-[4px] relative rounded-[8px] shrink-0" data-node-id="37:30" data-name="Perspective switch">
-          <Link href="/ratings" className="bg-[#f1f3ee] content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shrink-0" data-node-id="37:31" data-name="Student view option">
+          <Link href={studentHref} className="bg-[#f1f3ee] content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shrink-0" data-node-id="37:31" data-name="Student view option">
             <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[14px] whitespace-nowrap" data-node-id="37:32">
               Student view
             </p>
           </Link>
-          <Link href="/ratings/professor" aria-current="page" className="bg-white content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0" data-node-id="37:33" data-name="Professor view option">
+          <Link href={professorHref} aria-current="page" className="bg-white content-stretch flex h-[36px] items-center overflow-clip px-[16px] relative rounded-[6px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0" data-node-id="37:33" data-name="Professor view option">
             <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[14px] whitespace-nowrap" data-node-id="37:34">
               Professor view
             </p>
@@ -124,48 +139,31 @@ export default function ClassDetailProfessorView() {
                   </p>
                   <div className="content-stretch flex gap-[8px] items-baseline overflow-clip relative shrink-0" data-node-id="37:41" data-name="Score">
                     <p className="font-bold relative shrink-0 text-[#16734c] text-[52px]" data-node-id="37:42">
-                      4.3
+                      {ratings.overall_rating?.toFixed(1) ?? "—"}
                     </p>
                     <p className="font-normal relative shrink-0 text-[#69756d] text-[16px]" data-node-id="37:43">
                       / 5
                     </p>
                   </div>
                   <p className="font-normal relative shrink-0 text-[#69756d] text-[13px]" data-node-id="37:44">
-                    Based on 128 reviews
+                    Based on {course.review_count} {course.review_count === 1 ? "review" : "reviews"}
                   </p>
                 </div>
                 <div className="content-stretch flex flex-[1_0_0] flex-col gap-[12px] items-start min-w-px overflow-clip relative" data-node-id="37:45" data-name="Class snapshot">
                   <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[20px] whitespace-nowrap" data-node-id="37:46">
-                    Hands-on learning. Real-world data.
+                    {course.professor}
                   </p>
                   <p className="[word-break:break-word] font-normal leading-[24px] min-w-full not-italic relative shrink-0 text-[#69756d] text-[16px] w-[min-content]" data-node-id="37:47">
-                    Explore Python, statistics, and data visualization through weekly labs and a final team project.
+                    {[course.code, course.credits !== null && `${course.credits} credits`].filter(Boolean).join(" · ")}
                   </p>
-                  <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0" data-node-id="37:48" data-name="Popular tags">
-                    <div className="bg-[#eaf3ec] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:49" data-name="Tag">
-                      <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="37:50">
-                        Practical skills
-                      </p>
-                    </div>
-                    <div className="bg-[#eaf3ec] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:51" data-name="Tag">
-                      <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="37:52">
-                        Project-based
-                      </p>
-                    </div>
-                    <div className="bg-[#eaf3ec] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:53" data-name="Tag">
-                      <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="37:54">
-                        Weekly labs
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div className="[word-break:break-word] border-[#dde4dc] border-solid border-t content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip pt-[20px] relative shrink-0 w-full whitespace-nowrap" data-node-id="37:55" data-name="Attribute heading">
                 <p className="relative shrink-0 text-[#18332b] text-[17px]" data-node-id="37:56">
-                  Student class ratings
+                  Class ratings
                 </p>
                 <p className="relative shrink-0 text-[#69756d] text-[12px]" data-node-id="37:57">
-                  Student ratings only · class experience, not professor rating
+                  Average ratings across class reviews
                 </p>
               </div>
               <div className="content-stretch flex gap-[24px] items-start overflow-clip relative shrink-0 w-full" data-node-id="37:58" data-name="Attribute row">
@@ -175,10 +173,10 @@ export default function ClassDetailProfessorView() {
                       Group vs solo work
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="37:62">
-                      3.8 / 5
+                      {ratings.group_vs_solo === null ? "—" : `${ratings.group_vs_solo.toFixed(1)} / 5`}
                     </p>
                   </div>
-                  <RatingScale amount={70} />
+                  {ratings.group_vs_solo !== null && <RatingScale amount={(ratings.group_vs_solo - 1) * 25} />}
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="37:67" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="37:68">
                       1 · Solo
@@ -194,10 +192,10 @@ export default function ClassDetailProfessorView() {
                       Amount of presentations
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="37:73">
-                      2.2 / 5
+                      {ratings.presentations === null ? "—" : `${ratings.presentations.toFixed(1)} / 5`}
                     </p>
                   </div>
-                  <RatingScale amount={30} />
+                  {ratings.presentations !== null && <RatingScale amount={(ratings.presentations - 1) * 25} />}
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="37:78" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="37:79">
                       1 · None
@@ -215,10 +213,10 @@ export default function ClassDetailProfessorView() {
                       Workload in class
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="37:85">
-                      3.1 / 5
+                      {ratings.workload_in_class === null ? "—" : `${ratings.workload_in_class.toFixed(1)} / 5`}
                     </p>
                   </div>
-                  <RatingScale amount={52.5} />
+                  {ratings.workload_in_class !== null && <RatingScale amount={(ratings.workload_in_class - 1) * 25} />}
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="37:90" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="37:91">
                       1 · Light
@@ -234,10 +232,10 @@ export default function ClassDetailProfessorView() {
                       Workload out of class
                     </p>
                     <p className="font-bold relative shrink-0 text-[#16734c]" data-node-id="37:96">
-                      4.0 / 5
+                      {ratings.workload_out_of_class === null ? "—" : `${ratings.workload_out_of_class.toFixed(1)} / 5`}
                     </p>
                   </div>
-                  <RatingScale amount={75} />
+                  {ratings.workload_out_of_class !== null && <RatingScale amount={(ratings.workload_out_of_class - 1) * 25} />}
                   <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="37:101" data-name="Scale endpoints">
                     <p className="relative shrink-0" data-node-id="37:102">
                       1 · Light
@@ -265,114 +263,40 @@ export default function ClassDetailProfessorView() {
             <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0 w-full" data-node-id="37:110" data-name="Comment filters">
               <div className="bg-[#eaf3ec] border border-[#16734c] border-solid content-stretch flex items-start overflow-clip px-[14px] py-[9px] relative rounded-[8px] shrink-0" data-node-id="37:111" data-name="Comment filter">
                 <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="37:112">
-                  All 12
+                  All {visibleReviews.length}
                 </p>
               </div>
               <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex items-start overflow-clip px-[14px] py-[9px] relative rounded-[8px] shrink-0" data-node-id="37:113" data-name="Comment filter">
                 <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:114">
-                  Dr. Maya Chen
+                  {course.professor}
                 </p>
               </div>
             </div>
-            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[16px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-full" data-node-id="37:117" data-name="Professor comment">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="37:118" data-name="Comment header">
-                <div className="content-stretch flex gap-[12px] items-center overflow-clip relative shrink-0" data-node-id="37:119" data-name="Author">
-                  <div className="bg-[#eaf3ec] content-stretch flex items-center justify-center overflow-clip relative rounded-[18px] shrink-0 size-[36px]" data-node-id="37:120" data-name="Professor avatar">
-                    <div className="relative shrink-0 size-[18px]" data-node-id="37:121" data-name="user-round">
-                      <Image alt="" width={18} height={18} className="absolute block inset-0 max-w-none size-full" src={imgUserRound} unoptimized />
+            {visibleReviews.length === 0 && <p>No professor comments yet.</p>}
+            {visibleReviews.map((review) => (
+              <div key={review.id} className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[16px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-full" data-node-id="37:117" data-name="Professor comment">
+                <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="37:118" data-name="Comment header">
+                  <div className="content-stretch flex gap-[12px] items-center overflow-clip relative shrink-0" data-node-id="37:119" data-name="Author">
+                    <div className="bg-[#eaf3ec] content-stretch flex items-center justify-center overflow-clip relative rounded-[18px] shrink-0 size-[36px]" data-node-id="37:120" data-name="Professor avatar">
+                      <div className="relative shrink-0 size-[18px]" data-node-id="37:121" data-name="user-round">
+                        <Image alt="" width={18} height={18} className="absolute block inset-0 max-w-none size-full" src={imgUserRound} unoptimized />
+                      </div>
+                    </div>
+                    <div className="[word-break:break-word] content-stretch flex flex-col gap-[3px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 whitespace-nowrap" data-node-id="37:123" data-name="Author information">
+                      <p className="font-semibold relative shrink-0 text-[#18332b] text-[14px]" data-node-id="37:124">
+                        {review.author}
+                      </p>
+                      <p className="font-normal relative shrink-0 text-[#69756d] text-[12px]" data-node-id="37:125">
+                        {[course.code, review.semester].filter(Boolean).join(" · ")}
+                      </p>
                     </div>
                   </div>
-                  <div className="[word-break:break-word] content-stretch flex flex-col gap-[3px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 whitespace-nowrap" data-node-id="37:123" data-name="Author information">
-                    <p className="font-semibold relative shrink-0 text-[#18332b] text-[14px]" data-node-id="37:124">
-                      Dr. Maya Chen
-                    </p>
-                    <p className="font-normal relative shrink-0 text-[#69756d] text-[12px]" data-node-id="37:125">
-                      CS 210 · Professor comment · Spring 2026
-                    </p>
-                  </div>
                 </div>
-                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="37:212">
-                  Posted 2 days ago
+                <p className="[word-break:break-word] font-normal leading-[24px] min-w-full not-italic relative shrink-0 text-[#18332b] text-[16px] w-[min-content]" data-node-id="37:130">
+                  {review.comment}
                 </p>
               </div>
-              <p className="[word-break:break-word] font-normal leading-[24px] min-w-full not-italic relative shrink-0 text-[#18332b] text-[16px] w-[min-content]" data-node-id="37:130">
-                For CS 210, I recommend starting the weekly labs early and reviewing the data cleaning steps before the final project. Office hours are available every Tuesday and Thursday for project check-ins.
-              </p>
-              <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0" data-node-id="37:131" data-name="Comment tags">
-                <div className="bg-[#f1f3ee] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:132" data-name="Comment tag">
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:133">
-                    Project guidance
-                  </p>
-                </div>
-                <div className="bg-[#f1f3ee] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:134" data-name="Comment tag">
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:135">
-                    Office hours
-                  </p>
-                </div>
-              </div>
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="37:138" data-name="Comment actions">
-                <div className="content-stretch flex gap-[7px] items-center overflow-clip relative shrink-0" data-node-id="37:139" data-name="Helpful action">
-                  <div className="relative shrink-0 size-[15px]" data-node-id="37:140" data-name="thumbs-up">
-                    <Image alt="" width={15} height={15} className="absolute block inset-0 max-w-none size-full" src={imgThumbsUp} unoptimized />
-                  </div>
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:142">
-                    Helpful (12)
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col gap-[16px] items-start overflow-clip p-[24px] relative rounded-[12px] shrink-0 w-full" data-node-id="37:143" data-name="Professor comment">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="37:144" data-name="Comment header">
-                <div className="content-stretch flex gap-[12px] items-center overflow-clip relative shrink-0" data-node-id="37:145" data-name="Author">
-                  <div className="bg-[#eaf3ec] content-stretch flex items-center justify-center overflow-clip relative rounded-[18px] shrink-0 size-[36px]" data-node-id="37:146" data-name="Professor avatar">
-                    <div className="relative shrink-0 size-[18px]" data-node-id="37:147" data-name="user-round">
-                      <Image alt="" width={18} height={18} className="absolute block inset-0 max-w-none size-full" src={imgUserRound} unoptimized />
-                    </div>
-                  </div>
-                  <div className="[word-break:break-word] content-stretch flex flex-col gap-[3px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 whitespace-nowrap" data-node-id="37:149" data-name="Author information">
-                    <p className="font-semibold relative shrink-0 text-[#18332b] text-[14px]" data-node-id="37:150">
-                      Dr. Maya Chen
-                    </p>
-                    <p className="font-normal relative shrink-0 text-[#69756d] text-[12px]" data-node-id="37:151">
-                      CS 210 · Professor comment · Fall 2025
-                    </p>
-                  </div>
-                </div>
-                <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="37:213">
-                  Posted 3 weeks ago
-                </p>
-              </div>
-              <p className="[word-break:break-word] font-normal leading-[24px] min-w-full not-italic relative shrink-0 text-[#18332b] text-[16px] w-[min-content]" data-node-id="37:156">
-                For the final project, teams should choose a dataset aligned with the course learning goals. I’ll post a rubric and example prompts in the course portal before the midpoint of the semester.
-              </p>
-              <div className="content-stretch flex gap-[8px] items-start overflow-clip relative shrink-0" data-node-id="37:157" data-name="Comment tags">
-                <div className="bg-[#f1f3ee] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:158" data-name="Comment tag">
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:159">
-                    Final project
-                  </p>
-                </div>
-                <div className="bg-[#f1f3ee] content-stretch flex items-start overflow-clip px-[10px] py-[5px] relative rounded-[5px] shrink-0" data-node-id="37:160" data-name="Comment tag">
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:161">
-                    Rubric
-                  </p>
-                </div>
-              </div>
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="37:164" data-name="Comment actions">
-                <div className="content-stretch flex gap-[7px] items-center overflow-clip relative shrink-0" data-node-id="37:165" data-name="Helpful action">
-                  <div className="relative shrink-0 size-[15px]" data-node-id="37:166" data-name="thumbs-up">
-                    <Image alt="" width={15} height={15} className="absolute block inset-0 max-w-none size-full" src={imgThumbsUp} unoptimized />
-                  </div>
-                  <p className="[word-break:break-word] font-normal leading-[normal] not-italic relative shrink-0 text-[#69756d] text-[12px] whitespace-nowrap" data-node-id="37:168">
-                    Helpful (8)
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex h-[42px] items-center justify-center overflow-clip px-[18px] relative rounded-[8px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] shrink-0 w-full" data-node-id="37:169" data-name="Action">
-              <p className="[word-break:break-word] font-semibold leading-[normal] not-italic relative shrink-0 text-[#18332b] text-[14px] whitespace-nowrap" data-node-id="37:170">
-                Load more comments
-              </p>
-            </div>
+            ))}
           </div>
 
         </div>

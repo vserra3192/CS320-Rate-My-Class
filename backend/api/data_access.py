@@ -9,7 +9,7 @@ class StorageUnavailable(APIException):
     default_code = "storage_unavailable"
 
 
-COURSE_FIELDS = ("id", "code", "title", "professor", "credits")
+COURSE_FIELDS = ("id", "title", "professor")
 RATING_FIELDS = (
     "overall_rating",
     "group_vs_solo",
@@ -37,7 +37,11 @@ def _model(name):
 
 
 def _course_data(course):
-    return {field: getattr(course, field) for field in COURSE_FIELDS}
+    return {
+        **{field: getattr(course, field) for field in COURSE_FIELDS},
+        "code": getattr(course, "code", None),
+        "credits": getattr(course, "credits", None),
+    }
 
 
 def _review_data(review):

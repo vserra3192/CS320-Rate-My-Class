@@ -1,23 +1,31 @@
 "use client";
 import { useState } from "react";
-import { RatingScale } from "./components/rating-scale";
+import { ClassResult } from "./components/class-result";
 import Image from "next/image";
-import Link from "next/link";
 import { Header } from "./components/header";
+import { useCourseList } from "./components/course-provider";
 
 const assetPathPrefix = "/figma";
 const imgSearch = `${assetPathPrefix}/eb0a0.svg`;
 const imgX = `${assetPathPrefix}/04b91.svg`;
 const imgSlidersHorizontal = `${assetPathPrefix}/d8b84.svg`;
 const imgChevronDown = `${assetPathPrefix}/eb9cb.svg`;
-const imgArrowUpRight = `${assetPathPrefix}/4a824.svg`;
 
 
 export default function ClassSearchAndResults() {
   const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const { courses, loading, error } = useCourseList();
+  const matches = query
+    ? courses.filter(({ code, title }) =>
+        [code, title].some((value) => value?.toLowerCase().includes(query)),
+      )
+    : courses.slice(0, 6);
+
   function handleSearch() {
-    // call endpoint here
+    setQuery(search.trim().toLowerCase());
   }
+
   return (
     <main className="bg-[#f7f7f2] content-stretch flex flex-col items-start relative size-full" data-node-id="25:3" data-name="Class search and results">
       <Header />
@@ -31,6 +39,9 @@ export default function ClassSearchAndResults() {
                 type="text"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") handleSearch();
+                }}
                 placeholder="Search classes"
                 aria-label="Search classes"
                 className="min-w-0 flex-1 border-none bg-transparent text-[15px] text-[#18332b] outline-none placeholder:text-[#69756d]"
@@ -39,7 +50,10 @@ export default function ClassSearchAndResults() {
               <button
                 type="button"
                 aria-label="Clear search"
-                onClick={() => setSearch("")}
+                onClick={() => {
+                  setSearch("");
+                  setQuery("");
+                }}
                 className="relative shrink-0 size-[16px] cursor-pointer"
               >
                 <Image
@@ -93,6 +107,7 @@ export default function ClassSearchAndResults() {
             Reset
           </p>
         </div>
+        {!process.env.NEXT_PUBLIC_API_URL && <p className="text-sm text-[#69756d]">Sample course data</p>}
         <div className="bg-white border border-[#dde4dc] border-solid content-stretch flex flex-col items-start overflow-clip relative rounded-[12px] shrink-0 w-full" data-node-id="25:62" data-name="Class comparison list">
           <div className="[word-break:break-word] bg-[#f1f3ee] content-stretch flex font-semibold gap-[24px] items-center not-italic overflow-clip px-[24px] py-[18px] relative shrink-0 w-full" data-node-id="25:63" data-name="List headings">
             <p className="leading-[normal] relative shrink-0 text-[#69756d] text-[12px] w-[292px]" data-node-id="25:64">{`CLASS & PROFESSOR`}</p>
@@ -116,368 +131,25 @@ export default function ClassSearchAndResults() {
               <p className="leading-[1.4]">out of class</p>
             </div>
           </div>
-          <div className="border-[#dde4dc] border-solid border-t content-stretch flex gap-[24px] items-center overflow-clip px-[24px] py-[26px] relative shrink-0 w-full" data-node-id="25:70" data-name="Class result">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-[292px]" data-node-id="25:71" data-name="Course information">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="25:72">
-                CS 210 · 3 CREDITS
-              </p>
-              <p className="font-semibold leading-[1.3] min-w-full relative shrink-0 text-[#18332b] text-[18px] w-[min-content]" data-node-id="25:73"><Link href="/ratings" className="hover:underline underline-offset-4">
-                Introduction to Data Science
-              </Link></p>
-              <p className="font-normal leading-[normal] relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="25:74">
-                Dr. Maya Chen
-              </p>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 w-[94px] whitespace-nowrap" data-node-id="25:76" data-name="Overall score">
-              <p className="font-bold relative shrink-0 text-[#16734c] text-[28px]" data-node-id="25:77">
-                4.3
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:78">
-                out of 5
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:79">
-                128 reviews
-              </p>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:80" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:81" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:82">
-                  3.8 / 5
-                </p>
-              </div>
-              <RatingScale amount={70} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:87" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:88">
-                  1 · Solo
-                </p>
-                <p className="relative shrink-0" data-node-id="25:89">
-                  5 · Group
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:90" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:91" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:92">
-                  2.2 / 5
-                </p>
-              </div>
-              <RatingScale amount={30} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:97" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:98">
-                  1 · None
-                </p>
-                <p className="relative shrink-0" data-node-id="25:99">
-                  5 · A lot
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:100" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:101" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:102">
-                  3.1 / 5
-                </p>
-              </div>
-              <RatingScale amount={52.5} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:107" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:108">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:109">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:110" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:111" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:112">
-                  4.0 / 5
-                </p>
-              </div>
-              <RatingScale amount={75} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:117" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:118">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:119">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <Link href="/ratings" aria-label="View class ratings" className="relative shrink-0 size-[20px]">
-              <Image alt="" width={20} height={20} className="absolute block inset-0 max-w-none size-full" src={imgArrowUpRight} unoptimized />
-            </Link>
-          </div>
-          <div className="border-[#dde4dc] border-solid border-t content-stretch flex gap-[24px] items-center overflow-clip px-[24px] py-[26px] relative shrink-0 w-full" data-node-id="25:121" data-name="Class result">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-[292px]" data-node-id="25:122" data-name="Course information">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="25:123">
-                CS 110 · 3 CREDITS
-              </p>
-              <p className="font-semibold leading-[1.3] min-w-full relative shrink-0 text-[#18332b] text-[18px] w-[min-content]" data-node-id="25:124"><Link href="/ratings" className="hover:underline underline-offset-4">
-                Introduction to Programming
-              </Link></p>
-              <p className="font-normal leading-[normal] relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="25:125">
-                Dr. Daniel Brooks
-              </p>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 w-[94px] whitespace-nowrap" data-node-id="25:127" data-name="Overall score">
-              <p className="font-bold relative shrink-0 text-[#16734c] text-[28px]" data-node-id="25:128">
-                4.5
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:129">
-                out of 5
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:130">
-                204 reviews
-              </p>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:131" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:132" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:133">
-                  2.0 / 5
-                </p>
-              </div>
-              <RatingScale amount={25} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:138" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:139">
-                  1 · Solo
-                </p>
-                <p className="relative shrink-0" data-node-id="25:140">
-                  5 · Group
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:141" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:142" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:143">
-                  1.2 / 5
-                </p>
-              </div>
-              <RatingScale amount={5} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:148" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:149">
-                  1 · None
-                </p>
-                <p className="relative shrink-0" data-node-id="25:150">
-                  5 · A lot
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:151" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:152" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:153">
-                  2.8 / 5
-                </p>
-              </div>
-              <RatingScale amount={45} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:158" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:159">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:160">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:161" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:162" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:163">
-                  3.5 / 5
-                </p>
-              </div>
-              <RatingScale amount={62.5} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:168" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:169">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:170">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <Link href="/ratings" aria-label="View class ratings" className="relative shrink-0 size-[20px]">
-              <Image alt="" width={20} height={20} className="absolute block inset-0 max-w-none size-full" src={imgArrowUpRight} unoptimized />
-            </Link>
-          </div>
-          <div className="border-[#dde4dc] border-solid border-t content-stretch flex gap-[24px] items-center overflow-clip px-[24px] py-[26px] relative shrink-0 w-full" data-node-id="25:172" data-name="Class result">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-[292px]" data-node-id="25:173" data-name="Course information">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="25:174">
-                CS 240 · 3 CREDITS
-              </p>
-              <p className="font-semibold leading-[1.3] min-w-full relative shrink-0 text-[#18332b] text-[18px] w-[min-content]" data-node-id="25:175"><Link href="/ratings" className="hover:underline underline-offset-4">{`Data Structures & Algorithms`}</Link></p>
-              <p className="font-normal leading-[normal] relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="25:176">
-                Dr. Maya Chen
-              </p>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 w-[94px] whitespace-nowrap" data-node-id="25:178" data-name="Overall score">
-              <p className="font-bold relative shrink-0 text-[#16734c] text-[28px]" data-node-id="25:179">
-                4.1
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:180">
-                out of 5
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:181">
-                96 reviews
-              </p>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:182" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:183" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:184">
-                  2.6 / 5
-                </p>
-              </div>
-              <RatingScale amount={40} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:189" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:190">
-                  1 · Solo
-                </p>
-                <p className="relative shrink-0" data-node-id="25:191">
-                  5 · Group
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:192" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:193" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:194">
-                  1.4 / 5
-                </p>
-              </div>
-              <RatingScale amount={10} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:199" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:200">
-                  1 · None
-                </p>
-                <p className="relative shrink-0" data-node-id="25:201">
-                  5 · A lot
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:202" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:203" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:204">
-                  3.8 / 5
-                </p>
-              </div>
-              <RatingScale amount={70} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:209" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:210">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:211">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:212" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:213" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:214">
-                  4.6 / 5
-                </p>
-              </div>
-              <RatingScale amount={90} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:219" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:220">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:221">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <Link href="/ratings" aria-label="View class ratings" className="relative shrink-0 size-[20px]">
-              <Image alt="" width={20} height={20} className="absolute block inset-0 max-w-none size-full" src={imgArrowUpRight} unoptimized />
-            </Link>
-          </div>
-          <div className="border-[#dde4dc] border-solid border-t content-stretch flex gap-[24px] items-center overflow-clip px-[24px] py-[26px] relative shrink-0 w-full" data-node-id="25:223" data-name="Class result">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip relative shrink-0 w-[292px]" data-node-id="25:224" data-name="Course information">
-              <p className="font-bold leading-[normal] relative shrink-0 text-[#16734c] text-[12px] whitespace-nowrap" data-node-id="25:225">
-                CS 315 · 3 CREDITS
-              </p>
-              <p className="font-semibold leading-[1.3] min-w-full relative shrink-0 text-[#18332b] text-[18px] w-[min-content]" data-node-id="25:226"><Link href="/ratings" className="hover:underline underline-offset-4">
-                Human–Computer Interaction
-              </Link></p>
-              <p className="font-normal leading-[normal] relative shrink-0 text-[#69756d] text-[13px] whitespace-nowrap" data-node-id="25:227">
-                Prof. Alex Rivera
-              </p>
-            </div>
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[6px] items-start leading-[normal] not-italic overflow-clip relative shrink-0 w-[94px] whitespace-nowrap" data-node-id="25:229" data-name="Overall score">
-              <p className="font-bold relative shrink-0 text-[#16734c] text-[28px]" data-node-id="25:230">
-                4.6
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:231">
-                out of 5
-              </p>
-              <p className="font-normal relative shrink-0 text-[#69756d] text-[11px]" data-node-id="25:232">
-                73 reviews
-              </p>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:233" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:234" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:235">
-                  4.7 / 5
-                </p>
-              </div>
-              <RatingScale amount={92.5} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:240" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:241">
-                  1 · Solo
-                </p>
-                <p className="relative shrink-0" data-node-id="25:242">
-                  5 · Group
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:243" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:244" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:245">
-                  4.2 / 5
-                </p>
-              </div>
-              <RatingScale amount={80} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:250" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:251">
-                  1 · None
-                </p>
-                <p className="relative shrink-0" data-node-id="25:252">
-                  5 · A lot
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:253" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:254" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:255">
-                  3.2 / 5
-                </p>
-              </div>
-              <RatingScale amount={55} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:260" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:261">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:262">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col gap-[8px] items-start overflow-clip relative shrink-0 w-[180px]" data-node-id="25:263" data-name="Aggregate rating">
-              <div className="content-stretch flex items-center justify-between overflow-clip relative shrink-0 w-full" data-node-id="25:264" data-name="Rating label">
-                <p className="[word-break:break-word] font-bold leading-[normal] not-italic relative shrink-0 text-[#16734c] text-[13px] whitespace-nowrap" data-node-id="25:265">
-                  3.6 / 5
-                </p>
-              </div>
-              <RatingScale amount={65} />
-              <div className="[word-break:break-word] content-stretch flex font-normal items-start justify-between leading-[normal] not-italic overflow-clip relative shrink-0 text-[#69756d] text-[11px] w-full whitespace-nowrap" data-node-id="25:270" data-name="Scale endpoints">
-                <p className="relative shrink-0" data-node-id="25:271">
-                  1 · Light
-                </p>
-                <p className="relative shrink-0" data-node-id="25:272">
-                  5 · Heavy
-                </p>
-              </div>
-            </div>
-            <Link href="/ratings" aria-label="View class ratings" className="relative shrink-0 size-[20px]">
-              <Image alt="" width={20} height={20} className="absolute block inset-0 max-w-none size-full" src={imgArrowUpRight} unoptimized />
-            </Link>
-          </div>
+          {loading && <p className="p-6" role="status">Loading classes…</p>}
+          {error && <p className="p-6" role="alert">{error}</p>}
+          {!loading && !error && matches.length === 0 && <p className="p-6">No courses found.</p>}
+          {matches.map((course) => (
+            <ClassResult
+              key={course.id}
+              courseId={course.id}
+              code={course.code}
+              title={course.title}
+              professor={course.professor}
+              credits={course.credits}
+              reviewCount={course.review_count}
+              overall={course.average_ratings.overall_rating}
+              groupWork={course.average_ratings.group_vs_solo}
+              presentations={course.average_ratings.presentations}
+              inClassWorkload={course.average_ratings.workload_in_class}
+              outOfClassWorkload={course.average_ratings.workload_out_of_class}
+            />
+          ))}
         </div>
       </div>
     </main>
