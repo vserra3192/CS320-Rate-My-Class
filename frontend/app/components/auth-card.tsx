@@ -79,9 +79,9 @@ const redirectTo =
     try {
       if (mode === 'signup') {
         const { data, error } = await supabase.auth.signUp({
-          email, password,
+          email: email.trim(), password,
           options: {
-            data: { full_name: name },
+            data: { full_name: name.trim() },
             emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(redirectTo)}`,
           },
         })
